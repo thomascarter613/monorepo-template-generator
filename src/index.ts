@@ -1,6 +1,14 @@
 #!/usr/bin/env bun
 
-import { BLUEPRINT_FILE } from "./blueprint";
+import { createBlueprint } from "./blueprint";
+import { resolveCapabilities } from "./resolver";
+
+const blueprint = createBlueprint({
+  repoName: "demo-monorepo",
+  outputDir: "./demo-monorepo",
+});
+
+const resolution = resolveCapabilities(blueprint);
 
 console.log("monofactory bootstrap");
-console.log(`blueprint file: ${BLUEPRINT_FILE}`);
+console.log(`resolved: ${resolution.resolved.join(", ")}`);
